@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
   import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
   
-    const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyC2JBbLOLLt71J8-6RTlvVZg7-oa8RUt-8",
     authDomain: "signup-form-using-firebase.firebaseapp.com",
     projectId: "signup-form-using-firebase",
@@ -9,34 +9,31 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
     messagingSenderId: "251898657374",
     appId: "1:251898657374:web:f885c20ef29b54eb2792cf",
     measurementId: "G-NQBTDTV4NH"
-    };
+  };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    let out = document.getElementById('out')
+  let out = document.getElementById('out')
 
         let text = document.getElementById('para');
 
         text.innerText = `Hey 👋 Welcome to Our Website `;
 
-        out.addEventListener('click' , function(){
-            const auth = getAuth();
-    
-            signOut(auth).then(() => {
-    
-    
-               window.location.href = 'login.html';
-    
-    
-                // Sign-out successful.
-            }).catch((error) => {
-    
-            
-    
-                Swal.fire("Failed to SignOut");
-                
-            });
-    
-    })
+  out.addEventListener('click' , function(){
+
+    const auth = getAuth();
+
+    signOut(auth).then(() => {
+
+
+       window.location.href = 'login.html';
+
+    }).catch((error) => {
+
+        Swal.fire("Failed to SignOut");
+        
+    });
+
+})

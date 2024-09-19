@@ -1,8 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-  import { getAuth, 
-           signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
   
-    const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyC2JBbLOLLt71J8-6RTlvVZg7-oa8RUt-8",
     authDomain: "signup-form-using-firebase.firebaseapp.com",
     projectId: "signup-form-using-firebase",
@@ -10,43 +10,45 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
     messagingSenderId: "251898657374",
     appId: "1:251898657374:web:f885c20ef29b54eb2792cf",
     measurementId: "G-NQBTDTV4NH"
-    };
+  };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  let passlogin = document.getElementById('userPassLogin');
+
+        let emaillogin = document.getElementById('userEmailLogin');
+
+        let btnn = document.getElementById('btnn');
+
+        btnn.addEventListener('click', function () {
 
 
-    let passlogin = document.getElementById('userPassLogin');
+            const auth = getAuth();
 
-    let emaillogin = document.getElementById('userEmailLogin');
+            signInWithEmailAndPassword(auth, emaillogin.value, passlogin.value)
 
-    let btnn = document.getElementById('btnn');
+                .then((userCredential) => {
+                    const user = userCredential.user;
 
-    btnn.addEventListener('click', function () {
+                    
+            Swal.fire("Login successful! Welcome back.");
+
+                    window.location.href = 'dashboard.html'
+
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+
+                    Swal.fire("Login failed. Please check your credentials and try again.");
+
+                });
 
 
-        const auth = getAuth();
 
-        signInWithEmailAndPassword(auth, emaillogin.value, passlogin.value)
+           
+        });
 
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-
-                
-        Swal.fire("Login successful! Welcome back.");
-
-                window.location.href = 'dashboard.html'
-
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                Swal.fire("Login failed. Please check your credentials and try again.");
-
-            });
-
-       
-    });
